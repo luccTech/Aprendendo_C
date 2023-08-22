@@ -17,10 +17,17 @@ void incrementar_2(int *x,int *y){
     *y = *y+1;
     printf("\nDentro da funcao:\t x=%d y=%d",*x , *y);
 }
+void incrementar_3(int *x,int *y){
+    int g; //variavel para guardar valor de x temporariamente.
+    g = *x;
+    *x = *y;
+    *y = g;
+    printf("\nDentro da funcao:\t x=%d y=%d",*x , *y);
+}
 int main(void){
     int x = 10, y =2;
     printf("\nAntes da funcao:\t x=%d y=%d",x , y);
-    incrementar_2(&x,&y); //incrementar(10,2)
+    incrementar_3(&x,&y); //incrementar(10,2)
     printf("\nDepois da funcao:\t x=%d y=%d",x , y);
 
     return 0;
