@@ -44,19 +44,19 @@ int main() {
         imprimirTabuleiro();
 
         int escolha;
-        printf("Jogador %c, escolha uma posição (1-9): ", jogadorAtual);
+        printf("Jogador %c, escolha uma posicao (1-9): ", jogadorAtual);
         scanf("%d", &escolha);
 
         if (escolha < 1 || escolha > 9) {
-            printf("Posição inválida. Escolha uma posição válida (1-9).\n");
+            printf("Posição invalida. Escolha uma posicao valida (1-9).\n");
             continue; // Volta ao início do loop se a escolha for inválida
         }
 
         int linha = (escolha - 1) / 3; // Calcula a linha com base na escolha
-        int coluna = (escolha - 1) % 3; // Calcula a coluna com base na escolha
+        int coluna = (escolha - 1) % 3; // Calcula a coluna com base na escolha ex: coluna = (escolha - 1) % 3; // (5 - 1) % 3 = 4 % 3 = 1
 
         if (tabuleiro[linha][coluna] == 'X' || tabuleiro[linha][coluna] == 'O') {
-            printf("Posição já ocupada. Escolha outra posição.\n");
+            printf("Posicao ja ocupada. Escolha outra posicao.\n");
             continue; // Volta ao início do loop se a posição estiver ocupada
         }
 
