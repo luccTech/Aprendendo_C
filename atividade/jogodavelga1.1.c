@@ -1,5 +1,5 @@
 /*
-istituto:                IFBA               Data: 22/08/2023
+istituto:                IFBA               Data: 04/09/2023
 Aluno: Lucas Barbosa Barreto                Turma: 2º INF-B
 Disciplina: Algoritimos            Professora: Stefani Pires
 Tema: joga da velha */
