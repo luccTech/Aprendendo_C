@@ -1,3 +1,19 @@
+/*
+istituto:                IFBA               Data: 22/08/2023
+Aluno: Lucas Barbosa Barreto                Turma: 2º INF-B
+Disciplina: Algoritimos            Professora: Stefani Pires
+Tema: joga da velha */
+
+
+//                         Atividade: 
+// Faça um jogo da velha, onde ja e dada as posições entre da matriz
+/*
+    {'1', '2', '3'},
+    {'4', '5', '6'},
+    {'7', '8', '9'}
+*/
+
+
 #include <stdio.h>
 
 char tabuleiro[3][3] = {
