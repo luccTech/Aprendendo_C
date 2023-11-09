@@ -1,4 +1,8 @@
 import random
+import pygame.mixer
+
+# Inicialize o mixer pygame
+pygame.mixer.init()
 
 def main():
     ph_alvo = random.randint(0, 14)  # Gera um pH alvo entre 0 e 14
@@ -40,7 +44,6 @@ def main():
 
         escolha = int(input("Escolha uma ação: "))
 
-        
         if escolha == 1:
             ph_atual -= 2
         elif escolha == 2 or escolha == 3:
@@ -71,6 +74,17 @@ def main():
 
         if ph_atual == ph_alvo:
             print(f"\nParabéns! Você alcançou o pH-alvo {ph_alvo}.\n")
+            print("             Parabéns, você ganhou!")
+            print("                     ___________      ")
+            print("                    '._==_==_=_.'     ")
+            print("                    .-\\:      /-.    ")
+            print("                   | (|:.     |) |    ")
+            print("                    '-|:.     |-'     ")
+            print("                      \\::.    /      ")
+            print("                       '::. .'        ")
+            print("                         ) (          ")
+            print("                       _.' '._        ")
+            print("                      '-------'       ")
             pygame.mixer.music.load("avaliações/joguinho_pH/ganhou.mp3")
             pygame.mixer.music.play()
 
@@ -80,6 +94,22 @@ def main():
             break
         elif restante == 0:
             print("\nInfelizmente você não conseguiu. Tente novamente!\n")
+            print("                    _______________         ")
+            print("                   /               \       ")
+            print("                  /                 \      ")
+            print("                //                   \/\  ")
+            print("                \|   XXXX     XXXX   | /   ")
+            print("                 |   XXXX     XXXX   |/     ")
+            print("                 |   XXX       XXX   |      ")
+            print("                 |                   |      ")
+            print("                 \__      XXX      __/     ")
+            print("                   |\     XXX     /|       ")
+            print("                   | |           | |        ")
+            print("                   | I I I I I I I |        ")
+            print("                   |  I I I I I I  |        ")
+            print("                   \_             _/       ")
+            print("                     \_         _/         ")
+            print("                       \_______/           ")
             pygame.mixer.music.load("avaliações/joguinho_pH/perdeu.mp3")
             pygame.mixer.music.play()
 
