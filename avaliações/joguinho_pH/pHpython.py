@@ -40,6 +40,7 @@ def main():
 
         escolha = int(input("Escolha uma ação: "))
 
+        
         if escolha == 1:
             ph_atual -= 2
         elif escolha == 2 or escolha == 3:
@@ -70,9 +71,21 @@ def main():
 
         if ph_atual == ph_alvo:
             print(f"\nParabéns! Você alcançou o pH-alvo {ph_alvo}.\n")
+            pygame.mixer.music.load("avaliações/joguinho_pH/ganhou.mp3")
+            pygame.mixer.music.play()
+
+            # Aguarde o término da música
+            while pygame.mixer.music.get_busy():
+                pygame.time.Clock().tick(10)
             break
         elif restante == 0:
             print("\nInfelizmente você não conseguiu. Tente novamente!\n")
+            pygame.mixer.music.load("avaliações/joguinho_pH/perdeu.mp3")
+            pygame.mixer.music.play()
+
+            # Aguarde o término da música
+            while pygame.mixer.music.get_busy():
+                pygame.time.Clock().tick(10)
             break
 
 if __name__ == "__main__":
