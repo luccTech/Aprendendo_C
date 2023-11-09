@@ -48,20 +48,13 @@ int main() {
     float B7  = 3951.07;
     float C8  = 4186.01;
 
-    while (1)
-    {
-            
-    }
-    
-
-    // Loop para tocar a melodia
-    for (int i = 0; i < sizeof(notes) / sizeof(notes[0]); i++) {
-        // Toca a nota usando a função playSound
-        playSound(notes[i], duration);
-
-        // Aguarde um curto período de tempo antes de tocar a próxima nota
-        Sleep(duration);
-    }
-
+    playSound(C6, 200);
+    Sleep(200);
+    playSound(C6, 200);
+    Sleep(200);
+    playSound(C6, 200);
+    Sleep(200);
+    playSound(C6, 200);
+    Sleep(200);
     return 0;
 }
