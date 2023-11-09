@@ -1,32 +1,45 @@
-#include <windows.h>
-#include <mmsystem.h>
+#include <Python.h>
 
-#pragma comment(lib, "winmm.lib")
+int main() {
+    // Inicializa o interpretador Python
+    Py_Initialize();
 
-int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        printf("Uso: %s avaliações/joguinho_pH/ganhou.mp3\n", argv[0]);
-        return -1;
+    // Importa o módulo Python
+    PyObject* pName = PyUnicode_DecodeFSDefault("funcao_python");
+    PyObject* pModule = PyImport_Import(pName);
+    Py_XDECREF(pName);
+
+    // Verifica se o módulo foi importado com sucesso
+    if (pModule != NULL) {
+        // Obtém a referência para a função Python
+        PyObject* pFunc = PyObject_GetAttrString(pModule, "minha_funcao");
+
+        // Verifica se a função foi encontrada
+        if (pFunc != NULL && PyCallable_Check(pFunc)) {
+            // Chama a função Python
+            PyObject* pValue = PyObject_CallObject(pFunc, NULL);
+
+            // Converte o resultado para uma string C
+            if (pValue != NULL) {
+                char* result = PyUnicode_AsUTF8(pValue);
+                printf("Resultado da função Python: %s\n", result);
+                Py_XDECREF(pValue);
+            } else {
+                PyErr_Print();
+            }
+            Py_XDECREF(pFunc);
+        } else {
+            if (PyErr_Occurred()) PyErr_Print();
+            printf("Erro: Não foi possível encontrar a função Python\n");
+        }
+        Py_XDECREF(pModule);
+    } else {
+        PyErr_Print();
+        printf("Erro: Não foi possível importar o módulo Python\n");
     }
 
-    // Abre o arquivo MP3
-    if (mciSendStringA("open \"" argv[1] "\" type mpegvideo alias mp3", NULL, 0, NULL) != 0) {
-        printf("Erro ao abrir o arquivo MP3\n");
-        return -1;
-    }
-
-    // Reproduz o arquivo MP3
-    if (mciSendStringA("play mp3", NULL, 0, NULL) != 0) {
-        printf("Erro ao reproduzir o arquivo MP3\n");
-        mciSendStringA("close mp3", NULL, 0, NULL); // Fecha o arquivo MP3
-        return -1;
-    }
-
-    printf("Pressione Enter para sair...\n");
-    getchar();
-
-    // Fecha o arquivo MP3
-    mciSendStringA("close mp3", NULL, 0, NULL);
+    // Finaliza o interpretador Python
+    Py_Finalize();
 
     return 0;
 }
