@@ -1,25 +1,26 @@
-#include <SDL2/SDL.h>
+#include <windows.h>
+#include <mmsystem.h>
+#include <stdio.h>
 
-int main(){
-    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
-    printf("Erro ao inicializar o SDL: %s\n", SDL_GetError());
-    return 1;
-    }
+#pragma comment(lib, "winmm.lib")
 
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-    printf("Erro ao inicializar o sistema de áudio: %s\n", Mix_GetError());
-    return 1;
-    }
-    Mix_Music *musica = Mix_LoadMUS("avaliações/joguinho_pH/perdeu.mp3");
+int main() {
+    // Substitua "caminho/do/arquivo.mp3" pelo caminho do seu arquivo MP3
+    const char *mp3FilePath = "avaliações/joguinho_pH/ganhou.mp3";
 
-    if (!musica) {
-        printf("Erro ao carregar a música: %s\n", Mix_GetError());
-        return 1;
-    }
+    // Construir o comando MCI para abrir e reproduzir o arquivo MP3
+    char command[256];
+    snprintf(command, sizeof(command), "open \"%s\" type mpegvideo alias mp3", mp3FilePath);
+    mciSendStringA(command, NULL, 0, NULL);
 
-    Mix_PlayMusic(musica, 1);
-    Mix_FreeMusic(musica);
-    Mix_CloseAudio();
-    SDL_Quit();
+    // Reproduzir o arquivo MP3
+    mciSendStringA("play mp3", NULL, 0, NULL);
 
+    // Aguardar até que a reprodução seja concluída (opcional)
+    Sleep(5000);  // Aguarda por 5 segundos (você pode ajustar conforme necessário)
+
+    // Fechar o arquivo MP3
+    mciSendStringA("close mp3", NULL, 0, NULL);
+
+    return 0;
 }

@@ -1,0 +1,28 @@
+{
+  "configurations": [
+      {
+          "name": "MinGW",
+          "intelliSenseMode": "msvc-x64",
+          "includePath": [
+              "${workspaceFolder}/**"
+          ],
+          "defines": [],
+          "compilerPath": "C:/MinGW/bin/gcc.exe",
+          "cStandard": "c11",
+          "cppStandard": "c++17",
+          "intelliSenseEngine": "Tag Parser",
+          "browse": {
+              "path": [
+                  "${workspaceFolder}"
+              ],
+              "limitSymbolsToIncludedHeaders": true,
+              "databaseFilename": ""
+          },
+          "externalLibraries": [
+              "winmm.lib"  // Adicione esta linha para incluir a biblioteca winmm.lib
+          ],
+          "configurationProvider": "ms-vscode.cmake-tools"
+      }
+  ],
+  "version": 4
+}
